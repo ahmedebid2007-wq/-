@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام تسجيل دخول الطلاب</title>
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --accent-color: #0d47a1;
+            --bg-color: #f0f2f5;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* تنسيق صندوق تسجيل الدخول */
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-box h2 { color: var(--primary-color); margin-bottom: 25px; }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            text-align: right;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 15px;
+        }
+
+        button:hover { background-color: var(--accent-color); }
+
+        /* تنسيق لوحة الدرجات (مخفية في البداية) */
+        #dashboard {
+            display: none;
+            width: 90%;
+            max-width: 1000px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td { padding: 15px; text-align: center; border-bottom: 1px solid #eee; }
+        th { background: var(--primary-color); color: white; }
+
+        .error { color: red; font-size: 0.9rem; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="loginSection" class="login-box">
+        <h2>تسجيل دخول الطالب</h2>
+        <input type="text" id="studentID" placeholder="أدخل الرقم الجامعي (ID)">
+        <input type="password" id="password" placeholder="أدخل كلمة المرور">
+        <button onclick="login()">دخول</button>
+        <p id="errorMessage" class="error">بيانات الدخول غير صحيحة!</p>
+    </div>
+
+    <div id="dashboard">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 10px;">
+            <h3>مرحباً بك: عبدالله</h3>
+            <button onclick="location.reload()" style="width: auto; padding: 5px 15px; background: #666;">خروج</button>
+        </div>
+        
+        <p>الرقم الجامعي: <strong>225128187</strong></p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>المادة</th>
+                    <th>الدرجة</th>
+                    <th>التقدير</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>الكيمياء العامة</td>
+                    <td>92</td>
+                    <td style="color: green; font-weight: bold;">A</td>
+                </tr>
+                <tr>
+                    <td>الفيزياء الأساسية</td>
+                    <td>88</td>
+                    <td style="color: blue; font-weight: bold;">B+</td>
+                </tr>
+                <tr>
+                    <td>الدوائر الكهربائية</td>
+                    <td>85</td>
+                    <td style="color: blue; font-weight: bold;">B</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function login() {
+            const id = document.getElementById('studentID').value;
+            const pass = document.getElementById('password').value;
+            const error = document.getElementById('errorMessage');
+
+            // التحقق من البيانات التي حددتها أنت
+            if (id === "225128187" && pass === "SGLBID3F") {
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                document.body.style.alignItems = 'flex-start';
+                document.body.style.paddingTop = '50px';
+            } else {
+                error.style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
+
